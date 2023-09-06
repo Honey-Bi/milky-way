@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/milky-way/static/css/main.8f900394.css",
+    "main.js": "/milky-way/static/js/main.10bec73f.js",
+    "index.html": "/milky-way/index.html",
+    "main.8f900394.css.map": "/milky-way/static/css/main.8f900394.css.map",
+    "main.10bec73f.js.map": "/milky-way/static/js/main.10bec73f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8f900394.css",
+    "static/js/main.10bec73f.js"
+  ]
+}
