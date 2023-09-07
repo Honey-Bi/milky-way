@@ -61,7 +61,6 @@ class Particle {
   }
 }
 
-const NUM_PARTICLES = 600; // 파티클 개수
 const PARTICLE_SIZE = 0.5; // 파티클 크기
 const SPEED = 20000; // 밀리세컨드
 
@@ -71,25 +70,29 @@ export default function App() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [ctx, setCtx] = useState<CanvasRenderingContext2D | null>(null);
   const [size, setSize] = useState<Size>({ width: 0, height: 0 });
+  const NUM_PARTICLES = Math.round(600 * ((size.width + size.height) / 3000)); // 파티클 개수
 
   // 캔버스 크기 조절 및 초기화
   useEffect(() => {
     //context 처리
     handleResize();
-    if (!canvasRef.current || size.width === 0 || size.height === 0) return;
+    if (!canvasRef.current) return;
     const canvas: HTMLCanvasElement = canvasRef.current!;
     const context = canvas.getContext("2d") as CanvasRenderingContext2D;
     setCtx(context);
-    for (let i = 0; i < NUM_PARTICLES; i++) {
+    while (particles.length < NUM_PARTICLES) {
       particles.push(new Particle());
     }
-  }, [size.height, size.width]);
+    while (particles.length > NUM_PARTICLES) {
+      particles.pop();
+    }
+  }, [NUM_PARTICLES]);
 
   // 화면 리사이즈 이벤트 핸들러
   const handleResize = () => {
     setSize({
-      width: window.innerWidth,
-      height: window.innerHeight,
+      width: window.outerWidth,
+      height: window.outerHeight,
     });
   };
   useEffect(() => {
@@ -103,14 +106,13 @@ export default function App() {
   // 애니메이션 프레임 요청 및 해제
   useEffect(() => {
     let requestId: number;
-    const RequestAnimation =
-      (ctx: CanvasRenderingContext2D | null) => (time: number) => {
-        if (ctx) {
-          animate(ctx, time);
-        }
-        // 애니메이션 콜백 반복
-        requestId = window.requestAnimationFrame(RequestAnimation(ctx));
-      };
+    const RequestAnimation = (ctx: CanvasRenderingContext2D | null) => (time: number) => {
+      if (ctx) {
+        animate(ctx, time);
+      }
+      // 애니메이션 콜백 반복
+      requestId = window.requestAnimationFrame(RequestAnimation(ctx));
+    };
 
     // 애니메이션 초기화
     requestId = window.requestAnimationFrame(RequestAnimation(ctx));
@@ -142,16 +144,12 @@ export default function App() {
           ((time - particle.startTime) % particle.duration) / particle.duration;
         particles[index].position = {
           x: progress,
-          y:
-            Math.sin(progress * particle.arc) * particle.amplitude +
-            particle.offsetY,
+          y: Math.sin(progress * particle.arc) * particle.amplitude + particle.offsetY,
         };
       });
     },
     [size.height, size.width]
   );
 
-  return (
-    <canvas ref={canvasRef} width={size.width} height={size.height}></canvas>
-  );
+  return <canvas ref={canvasRef} width={size.width} height={size.height}></canvas>;
 }

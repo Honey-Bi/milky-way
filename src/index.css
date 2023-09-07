@@ -1,5 +1,6 @@
 body {
   overflow: hidden;
+  margin: 0;
   /* background: linear-gradient(#424874, #a6b1e1, #dcd6f7, #f4eeff); */
   background-color: black;
 }
