@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/milky-way/static/css/main.0a30134c.css",
-    "main.js": "/milky-way/static/js/main.379de20c.js",
+    "main.css": "/milky-way/static/css/main.9269a524.css",
+    "main.js": "/milky-way/static/js/main.0908c1a2.js",
     "index.html": "/milky-way/index.html",
-    "main.0a30134c.css.map": "/milky-way/static/css/main.0a30134c.css.map",
-    "main.379de20c.js.map": "/milky-way/static/js/main.379de20c.js.map"
+    "main.9269a524.css.map": "/milky-way/static/css/main.9269a524.css.map",
+    "main.0908c1a2.js.map": "/milky-way/static/js/main.0908c1a2.js.map"
   },
   "entrypoints": [
-    "static/css/main.0a30134c.css",
-    "static/js/main.379de20c.js"
+    "static/css/main.9269a524.css",
+    "static/js/main.0908c1a2.js"
   ]
 }
