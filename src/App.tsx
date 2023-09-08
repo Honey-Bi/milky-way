@@ -91,8 +91,8 @@ export default function App() {
   // 화면 리사이즈 이벤트 핸들러
   const handleResize = () => {
     setSize({
-      width: window.outerWidth,
-      height: window.outerHeight,
+      width: window.innerWidth,
+      height: window.innerHeight,
     });
   };
   useEffect(() => {
